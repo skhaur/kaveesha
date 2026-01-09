@@ -1,0 +1,388 @@
+/* styles.css */
+:root{
+    --image-bg: #6c60ad;
+  
+    --mid:  #2a0f4a;
+    --deep: #05040a;
+  
+    --text: rgba(255,255,255,0.95);
+    --muted: rgba(255,255,255,0.82);
+  
+    --container: 1080px;
+  
+    /* Projects sizing (ONE source of truth) */
+    --projSize: 260px;
+    --projGap: clamp(2.2rem, 4.2vw, 4.2rem);
+  
+    /* Gallery */
+    --black: #121212;
+    --black2: #1d1d1d;
+  }
+  
+  *{ box-sizing: border-box; }
+  html, body{ height:100%; }
+  
+  body{
+    margin:0;
+    font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: var(--image-bg);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+  
+  img{ display:block; max-width:100%; height:auto; }
+  
+  .container{
+    width: min(var(--container), calc(100% - 2.2rem));
+    margin: 0 auto;
+  }
+  
+  /* =========================
+     TITLE ABOVE IMAGE
+     ========================= */
+  
+  .titleSection{
+    background: var(--image-bg);
+    text-align: center;
+    padding: clamp(2.2rem, 6vh, 4.6rem) 0 clamp(1.2rem, 3vh, 2.2rem);
+  }
+  
+  .titleInner{ max-width: 920px; }
+  
+  .wordmark{
+    margin: 0;
+    font-family: "Italianno", cursive;
+    font-weight: 400;
+  
+    font-size: clamp(7rem, 24vw, 19rem);
+    line-height: 0.78;
+    letter-spacing: 0.04em;
+  
+    transform: scaleX(1.15);
+    transform-origin: center;
+  
+    color: #fff;
+    text-shadow:
+      0 0 30px rgba(180,120,255,0.35),
+      0 0 80px rgba(120,80,255,0.25);
+  }
+  
+  .tagline{
+    margin: 0 auto 0;
+    max-width: 640px;
+    font-size: clamp(0.95rem, 1.25vw, 1.05rem);
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  
+  /* =========================
+     HERO IMAGE (NO CROPPING EVER)
+     ========================= */
+  
+  .heroSection{
+    background: var(--image-bg);
+    padding: 0;
+  }
+  
+  .heroImg{
+    width: 100%;
+    height: auto;
+  }
+  
+  /* =========================
+     PROJECTS
+     ========================= */
+  
+  .projects{
+    background: var(--image-bg);
+    padding: clamp(2.8rem, 4.5vw, 4rem) 0;
+  }
+  
+  .projectsInner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .sectionTitle{
+    margin: 0 0 2.2rem;
+    text-align: center;
+  
+    font-style: italic;
+    font-weight: 300;
+    letter-spacing: 0.14em;
+  
+    font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+    color: rgba(255,255,255,0.9);
+  }
+  
+  .projectsGrid{
+    display: grid;
+    grid-template-columns: repeat(2, var(--projSize));
+    gap: var(--projGap);
+  
+    justify-content: center;
+    justify-items: start;
+  
+    width: 100%;
+  }
+  
+  .projectCard{ width: var(--projSize); }
+  
+  .projectImg{
+    width: var(--projSize);
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 14px;
+    border: none;
+    box-shadow: 0 22px 70px rgba(0,0,0,0.18);
+  }
+  
+  .projectTitle{
+    margin: 1.05rem 0 0.7rem;
+    font-size: 1.55rem;
+    font-weight: 650;
+    color: rgba(255,255,255,0.95);
+  }
+  
+  .projectMeta{
+    margin: 0 0 1.1rem;
+    font-size: 1.12rem;
+    line-height: 1.35;
+    color: rgba(255,255,255,0.85);
+  }
+  
+  .projectMeta p{ margin: 0.14rem 0; }
+  
+  .projectDesc{
+    margin: 0;
+    font-size: 1.12rem;
+    line-height: 1.55;
+    color: rgba(255,255,255,0.9);
+  }
+  
+/* =========================
+   PHOTO GALLERY (MASONRY COLLAGE)
+   ========================= */
+
+   .gallery{
+    background: radial-gradient(1200px 700px at 50% 0%, var(--black2), var(--black));
+    padding: clamp(3.2rem, 5vw, 5rem) 0 clamp(3rem, 5vw, 5rem);
+  }
+  
+  .galleryInner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .galleryTitle{
+    margin: 0 0 2.2rem;
+    text-align: center;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    font-size: clamp(3.2rem, 6.5vw, 5.4rem);
+    color: rgba(255,255,255,0.98);
+  }
+  
+  /* Masonry using CSS columns */
+  .galleryGrid{
+    width: 100%;
+    column-count: 3;
+    column-gap: clamp(0.9rem, 1.6vw, 1.3rem);
+  }
+  
+  /* Each item becomes a "block" inside the column flow */
+  .galleryItem{
+    width: 100%;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    cursor: pointer;
+  
+    display: inline-block;       /* IMPORTANT for columns */
+    margin: 0 0 clamp(0.9rem, 1.6vw, 1.3rem);
+  
+    border-radius: 10px;
+    overflow: hidden;
+    outline: none;
+  
+    break-inside: avoid;         /* prevent splitting */
+    -webkit-column-break-inside: avoid;
+  
+    box-shadow: 0 18px 55px rgba(0,0,0,0.45);
+  }
+  
+  .galleryItem img{
+    width: 100%;
+    height: auto;                /* let natural heights happen */
+    display: block;
+  
+    object-fit: contain;         /* never crop */
+    filter: contrast(1.02) saturate(1.05);
+    transition: transform 220ms ease, filter 220ms ease;
+  }
+  
+  .galleryItem:hover img{
+    transform: scale(1.02);
+    filter: contrast(1.05) saturate(1.12);
+  }
+  
+  .galleryItem:focus-visible{
+    outline: 2px solid rgba(255,255,255,0.7);
+    outline-offset: 4px;
+  }
+
+  
+  /* =========================
+     LIGHTBOX
+     ========================= */
+  
+  .lightbox{
+    position: fixed;
+    inset: 0;
+    display: none;           /* toggled by JS */
+    z-index: 9999;
+  }
+  
+  .lightbox.isOpen{
+    display: block;
+  }
+  
+  .lightboxBackdrop{
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(4px);
+  }
+  
+  .lightboxDialog{
+    position: relative;
+    width: min(92vw, 1100px);
+    margin: 5vh auto 0;
+    padding: 0;
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(0,0,0,0.25);
+    box-shadow: 0 30px 120px rgba(0,0,0,0.75);
+  }
+  
+  .lightboxImg{
+    width: 100%;
+    height: auto;
+    display: block;
+    background: #000000;
+  }
+  
+  .lightboxClose{
+    position: absolute;
+    top: 10px;
+    right: 12px;
+  
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+  
+    border: 0;
+    cursor: pointer;
+  
+    font-size: 32px;
+    line-height: 44px;
+    text-align: center;
+  
+    color: rgba(255,255,255,0.95);
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+  }
+
+  /* =========================
+   FEATURE IMAGE (single big)
+   ========================= */
+
+.featureImage{
+    background: var(--black);
+    padding: clamp(2.2rem, 4.5vw, 4rem) 0 clamp(3rem, 5vw, 5rem);
+  }
+  
+  .featureInner{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .featureImg{
+    width: 100%;
+    max-width: 1200px;     /* controls how wide it gets */
+    height: auto;          /* no cropping */
+    display: block;
+  
+    border-radius: 0;      /* matches your reference */
+    box-shadow: 0 24px 90px rgba(0,0,0,0.55);
+  }
+  
+  
+  /* =========================
+     BELOW (placeholder)
+     ========================= */
+  
+  .page{
+    background: linear-gradient(
+      180deg,
+      var(--image-bg) 0%,
+      var(--mid) 45%,
+      var(--deep) 100%
+    );
+    padding: 2rem 0 0;
+  }
+  
+  .spacer{ height: 70vh; }
+
+  .featureFullBleed .featureImg{
+    max-width: none;
+    width: 100%;
+  }
+  
+  
+  /* =========================
+     RESPONSIVE
+     ========================= */
+  
+  @media (max-width: 980px){
+    .galleryGrid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  
+  @media (max-width: 860px){
+    .projectsGrid{
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+    .projectCard{ text-align: center; }
+  }
+  
+  @media (max-width: 520px){
+    .galleryGrid{ grid-template-columns: 1fr; }
+    .galleryItem img{ aspect-ratio: 4 / 5; }
+  }
+  
+  @media (max-width: 420px){
+    .wordmark{
+      font-size: 32vw;
+      transform: scaleX(1.05);
+      line-height: 0.82;
+    }
+  
+    .tagline{
+      max-width: 330px;
+      font-size: 0.95rem;
+    }
+  }
+  
+    
+  /* Responsive columns */
+  @media (max-width: 980px){
+    .galleryGrid{ column-count: 2; }
+  }
+  
+  @media (max-width: 520px){
+    .galleryGrid{ column-count: 1; }
+  }
+  
